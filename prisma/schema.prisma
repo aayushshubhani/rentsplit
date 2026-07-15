@@ -1,0 +1,147 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id             String   @id @default(cuid())
+  name           String
+  email          String   @unique
+  passwordHash   String?
+  avatar         String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  housesAsAdmin   House[]        @relation("AdminHouses")
+  memberships     HouseMember[]
+  joinRequests    JoinRequest[]
+  expensesPaid    Expense[]      @relation("PaidBy")
+  expenseSplits   ExpenseSplit[]
+  payments        Payment[]
+  notifications   Notification[]
+  auditLogs       AuditLog[]
+}
+
+model House {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  city        String?
+  splitMode   String   @default("equal") // equal | percent | custom
+  adminId     String
+  inviteToken String   @unique @default(cuid())
+  inviteExpiry DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  admin        User          @relation("AdminHouses", fields: [adminId], references: [id])
+  members      HouseMember[]
+  joinRequests JoinRequest[]
+  expenses     Expense[]
+  auditLogs    AuditLog[]
+}
+
+model HouseMember {
+  id       String   @id @default(cuid())
+  houseId  String
+  userId   String
+  role     String   @default("member") // admin | member
+  joinedAt DateTime @default(now())
+
+  house House @relation(fields: [houseId], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([houseId, userId])
+}
+
+model JoinRequest {
+  id        String   @id @default(cuid())
+  houseId   String
+  userId    String
+  status    String   @default("pending") // pending | approved | rejected
+  reason    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  house House @relation(fields: [houseId], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([houseId, userId])
+}
+
+model Expense {
+  id          String   @id @default(cuid())
+  houseId     String
+  paidById    String
+  title       String
+  description String?
+  amount      Float
+  category    String   @default("other") // rent | utilities | groceries | food | transport | other
+  splitMode   String   @default("equal")
+  date        DateTime @default(now())
+  receiptUrl  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  house    House          @relation(fields: [houseId], references: [id], onDelete: Cascade)
+  paidBy   User           @relation("PaidBy", fields: [paidById], references: [id])
+  splits   ExpenseSplit[]
+  payments Payment[]
+}
+
+model ExpenseSplit {
+  id        String @id @default(cuid())
+  expenseId String
+  userId    String
+  amount    Float
+  percent   Float?
+
+  expense Expense @relation(fields: [expenseId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([expenseId, userId])
+}
+
+model Payment {
+  id              String   @id @default(cuid())
+  expenseId       String
+  payerId         String
+  amount          Float
+  proofUrl        String?
+  status          String   @default("pending") // pending | ai_verified | admin_approved | rejected
+  aiScore         Float?
+  aiDetails       String?
+  adminNote       String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  expense Expense @relation(fields: [expenseId], references: [id], onDelete: Cascade)
+  payer   User    @relation(fields: [payerId], references: [id])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  body      String
+  link      String?
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  houseId   String
+  userId    String
+  action    String
+  details   String?
+  createdAt DateTime @default(now())
+
+  house House @relation(fields: [houseId], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id])
+}
