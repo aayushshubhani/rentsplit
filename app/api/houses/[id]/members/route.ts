@@ -10,5 +10,11 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     where: { houseId: id },
     include: { user: { select: { id: true, name: true, email: true } } },
   })
-  return NextResponse.json(members.map(m => ({ id: m.userId, name: m.user.name, email: m.user.email })))
+  return NextResponse.json(
+    members.map((m: any) => ({
+      id: m.userId,
+      name: m.user.name,
+      email: m.user.email,
+    }))
+  )
 }
