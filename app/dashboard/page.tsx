@@ -58,7 +58,7 @@ export default async function DashboardPage() {
           { label: 'Owed to You', value: `₹${Math.max(0, totalOwedToMe).toFixed(0)}`, color: '#10b981', icon: '⬇️' },
           { label: 'Houses', value: memberships.length, color: '#00d4ff', icon: '🏠' },
           { label: 'Unread Alerts', value: notifications.length, color: '#f59e0b', icon: '🔔' },
-        ].map((s, i) => (
+        ].map(( s: any, i: any ) => (
           <div key={i} style={card}>
             <div style={{ fontSize: '1.3rem', marginBottom: '10px' }}>{s.icon}</div>
             <div style={{ fontFamily: 'Orbitron,monospace', fontSize: '1.7rem', fontWeight: '800', color: s.color }}>{s.value}</div>
@@ -84,7 +84,7 @@ export default async function DashboardPage() {
           </div>
         ) : (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(260px,1fr))', gap: '16px' }}>
-            {memberships.map(m => (
+            {memberships.map(( m : any ) => (
               <Link key={m.house.id} href={`/dashboard/houses/${m.house.id}`} style={{ ...card, textDecoration: 'none', display: 'block' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
                   <h3 style={{ color: '#f1f5f9', fontWeight: '700', fontSize: '1rem', margin: 0 }}>{m.house.name}</h3>
@@ -108,7 +108,7 @@ export default async function DashboardPage() {
             <Link href="/dashboard/notifications" style={{ color: '#00d4ff', fontSize: '0.82rem', textDecoration: 'none' }}>View all</Link>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            {notifications.map(n => (
+            {notifications.map(( n : any ) => (
               <div key={n.id} style={{ background: 'rgba(0,212,255,0.04)', border: '1px solid rgba(0,212,255,0.1)', borderRadius: '12px', padding: '14px 18px' }}>
                 <div style={{ fontWeight: '600', color: '#e2e8f0', fontSize: '0.87rem', marginBottom: '3px' }}>{n.title}</div>
                 <div style={{ color: '#64748b', fontSize: '0.81rem' }}>{n.body}</div>

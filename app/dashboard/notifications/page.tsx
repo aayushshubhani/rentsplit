@@ -35,7 +35,7 @@ export default async function NotificationsPage() {
         </div>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          {notifications.map(n => (
+          {notifications.map(( n : any ) => (
             <div key={n.id} style={{ background: n.read ? 'rgba(255,255,255,0.015)' : 'rgba(0,212,255,0.04)', border: `1px solid ${n.read ? 'rgba(255,255,255,0.05)' : 'rgba(0,212,255,0.12)'}`, borderRadius: '14px', padding: '16px 18px', display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
               <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: n.read ? '#334155' : '#00d4ff', flexShrink: 0, marginTop: '6px', boxShadow: n.read ? 'none' : '0 0 6px #00d4ff' }} />
               <div style={{ flex: 1 }}>

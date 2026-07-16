@@ -53,7 +53,7 @@ export default async function MembersPage({ params }: { params: Promise<{ id: st
         <div style={{ marginBottom: '28px' }}>
           <h3 style={{ color: '#f59e0b', fontWeight: '700', fontSize: '0.9rem', marginBottom: '12px', letterSpacing: '0.5px' }}>⏳ PENDING REQUESTS ({house.joinRequests.length})</h3>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            {house.joinRequests.map(req => (
+            {house.joinRequests.map(( req : any ) => (
               <div key={req.id} style={{ ...card, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <div>
                   <div style={{ fontWeight: '600', color: '#e2e8f0', fontSize: '0.9rem' }}>{req.user.name}</div>
@@ -77,7 +77,7 @@ export default async function MembersPage({ params }: { params: Promise<{ id: st
       <div>
         <h3 style={{ color: '#94a3b8', fontWeight: '700', fontSize: '0.9rem', marginBottom: '12px', letterSpacing: '0.5px' }}>CURRENT MEMBERS</h3>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          {house.members.map(m => (
+          {house.members.map(( m : any ) => (
             <div key={m.userId} style={{ ...card, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <div style={{ width: '34px', height: '34px', borderRadius: '50%', background: 'linear-gradient(135deg,#00d4ff,#8b5cf6)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem', fontWeight: '700', color: 'white' }}>{m.user.name[0]}</div>

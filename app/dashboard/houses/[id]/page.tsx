@@ -58,7 +58,7 @@ export default async function HouseDetailPage({ params }: { params: Promise<{ id
       {/* Members strip */}
       <div style={{ ...card, marginBottom: '28px', display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
         <span style={{ color: '#475569', fontSize: '0.82rem', fontWeight: '600' }}>MEMBERS:</span>
-        {house.members.map(m => (
+        {house.members.map(( m : any ) => (
           <div key={m.userId} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
             <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'linear-gradient(135deg,#00d4ff,#8b5cf6)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: '700', color: 'white' }}>{m.user.name[0]}</div>
             <span style={{ fontSize: '0.83rem', color: '#e2e8f0' }}>{m.user.name}</span>
@@ -78,7 +78,7 @@ export default async function HouseDetailPage({ params }: { params: Promise<{ id
         </div>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          {house.expenses.map(expense => {
+          {house.expenses.map(( expense : any ) => {
             const mySplit = expense.splits.find(s => s.userId === session.userId)
             const myPayment = expense.payments.find(p => p.payerId === session.userId)
             const isPayer = expense.paidById === session.userId
@@ -119,7 +119,7 @@ export default async function HouseDetailPage({ params }: { params: Promise<{ id
                 </div>
 
                 {/* Pending payments for admin review */}
-                {isAdmin && expense.payments.filter(p => p.status === 'admin_review').map(payment => (
+                {isAdmin && expense.payments.filter(p => p.status === 'admin_review').map(( payment : any ) => (
                   <div key={payment.id} style={{ marginTop: '12px', padding: '12px', background: 'rgba(139,92,246,0.08)', border: '1px solid rgba(139,92,246,0.2)', borderRadius: '10px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div>
                       <span style={{ fontSize: '0.82rem', color: '#a78bfa', fontWeight: '600' }}>🔍 Review: {payment.payer.name} — ₹{payment.amount.toFixed(0)}</span>

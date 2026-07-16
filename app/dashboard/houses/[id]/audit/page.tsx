@@ -43,7 +43,7 @@ export default async function AuditPage({ params }: { params: Promise<{ id: stri
           {/* Timeline line */}
           <div style={{ position: 'absolute', left: '15px', top: 0, bottom: 0, width: '2px', background: 'rgba(255,255,255,0.05)' }} />
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
-            {logs.map((log, i) => {
+            {logs.map(( log: any, i: any ) => {
               const color = Object.entries(actionColors).find(([k]) => log.action.includes(k.split(' ')[0]))?.[1] || '#475569'
               return (
                 <div key={log.id} style={{ display: 'flex', gap: '20px', paddingBottom: i < logs.length - 1 ? '20px' : 0 }}>

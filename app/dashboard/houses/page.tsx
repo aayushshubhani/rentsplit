@@ -34,7 +34,7 @@ export default async function HousesPage() {
         </div>
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(290px,1fr))', gap: '20px' }}>
-          {memberships.map(m => (
+          {memberships.map(( m : any ) => (
             <Link key={m.house.id} href={`/dashboard/houses/${m.house.id}`} style={card}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
                 <div style={{ width: '44px', height: '44px', background: 'linear-gradient(135deg,rgba(0,212,255,0.15),rgba(139,92,246,0.15))', border: '1px solid rgba(0,212,255,0.2)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem' }}>🏠</div>

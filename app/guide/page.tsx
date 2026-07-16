@@ -155,7 +155,7 @@ function RoleTable() {
           </tr>
         </thead>
         <tbody>
-          {rows.map((row, i) => (
+          {rows.map(( row: any, i: any ) => (
             <tr key={i} style={{ background: i % 2 === 0 ? 'rgba(255,255,255,0.01)' : 'transparent' }}>
               <td style={{ padding: '11px 16px', color: '#94a3b8', fontSize: '0.87rem', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>{row.action}</td>
               <td style={{ textAlign: 'center', padding: '11px 16px', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
@@ -259,7 +259,7 @@ export default function GuidePage() {
           <div style={{ fontSize: '0.72rem', fontWeight: '700', letterSpacing: '1.5px', color: '#334155', textTransform: 'uppercase', marginBottom: '12px', paddingLeft: '12px' }}>
             Contents
           </div>
-          {sections.map(s => (
+          {sections.map(( s : any ) => (
             <a
               key={s.id}
               href={`#${s.id}`}
@@ -424,7 +424,7 @@ export default function GuidePage() {
                 { name: 'Equal Split', icon: '÷', desc: 'Divide the total equally among all selected members. Best for shared utilities and rent.', color: '#06b6d4' },
                 { name: 'Percentage Split', icon: '%', desc: 'Assign a percentage to each member. Useful when rooms are different sizes (e.g. master bedroom vs. single room).', color: '#8b5cf6' },
                 { name: 'Custom Split', icon: '✎', desc: 'Enter a specific rupee amount for each member manually. Maximum flexibility for complex situations.', color: '#10b981' },
-              ].map((opt, i) => (
+              ].map(( opt: any, i: any ) => (
                 <div key={i} style={{
                   background: `${opt.color}0d`, border: `1px solid ${opt.color}25`,
                   borderRadius: '16px', padding: '20px',
@@ -478,7 +478,7 @@ export default function GuidePage() {
                 { icon: '🔑', title: 'Transaction ID Check', desc: 'Validates the transaction ID format and checks for duplicates (same proof used twice).', color: '#f59e0b' },
                 { icon: '🕵️', title: 'Tampering Detection', desc: 'Pixel-level analysis detects if the image has been edited or digitally altered.', color: '#ec4899' },
                 { icon: '📊', title: 'Confidence Score', desc: 'A 0–100% score combining all checks. Above 85% = auto-approved. Below = admin review.', color: '#a855f7' },
-              ].map((item, i) => (
+              ].map(( item: any, i: any ) => (
                 <div key={i} style={{
                   background: `${item.color}0a`, border: `1px solid ${item.color}20`,
                   borderRadius: '14px', padding: '18px',
@@ -495,7 +495,7 @@ export default function GuidePage() {
                 { range: '85–100%', status: '✅ Auto Approved', color: '#10b981', desc: 'All checks passed. Debt settled immediately.' },
                 { range: '60–84%', status: '⚠️ Admin Review', color: '#f59e0b', desc: 'Some uncertainty detected. Admin makes final decision.' },
                 { range: '0–59%', status: '❌ Likely Rejected', color: '#ec4899', desc: 'Multiple red flags. Admin review strongly recommended.' },
-              ].map((row, i) => (
+              ].map(( row: any, i: any ) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: i < 2 ? '12px' : 0 }}>
                   <div style={{
                     minWidth: '80px', padding: '4px 12px', borderRadius: '20px',
@@ -520,7 +520,7 @@ export default function GuidePage() {
                 { icon: '⬆️', label: 'You Owe', desc: 'Total amount you personally still owe to others.', color: '#ec4899' },
                 { icon: '⬇️', label: 'Owed to You', desc: 'Total amount others owe you (for expenses you paid).', color: '#10b981' },
                 { icon: '✅', label: 'Settlements', desc: 'How many of the open debts have been settled so far.', color: '#f59e0b' },
-              ].map((card, i) => (
+              ].map(( card: any, i: any ) => (
                 <div key={i} style={{
                   background: `${card.color}0a`, border: `1px solid ${card.color}20`,
                   borderRadius: '14px', padding: '16px',
@@ -567,7 +567,7 @@ export default function GuidePage() {
                 { who: 'Member', trigger: 'Your payment proof was approved / rejected', icon: '✅', color: '#ec4899' },
                 { who: 'Member', trigger: 'You were added to / removed from an expense', icon: '📋', color: '#a855f7' },
                 { who: 'All Members', trigger: 'A member left or was removed from the group', icon: '🚪', color: '#64748b' },
-              ].map((n, i) => (
+              ].map(( n: any, i: any ) => (
                 <div key={i} style={{
                   display: 'flex', alignItems: 'center', gap: '14px',
                   padding: '14px 18px', borderRadius: '12px',
@@ -596,7 +596,7 @@ export default function GuidePage() {
                 { time: '2026-07-09 22:10', icon: '✏️', text: 'Expense "Groceries ₹3,200" edited by Ananya Sharma (amount changed)', color: '#f59e0b' },
                 { time: '2026-07-09 14:00', icon: '❌', text: 'Payment proof rejected by admin — low confidence score (41%)', color: '#ec4899' },
                 { time: '2026-07-08 09:00', icon: '🔗', text: 'Invite link generated by admin (expires in 7 days)', color: '#64748b' },
-              ].map((log, i) => (
+              ].map(( log: any, i: any ) => (
                 <div key={i} style={{ display: 'flex', gap: '12px', paddingBottom: '4px', borderBottom: i < 5 ? '1px solid rgba(255,255,255,0.04)' : 'none' }}>
                   <span style={{ color: '#334155', minWidth: '140px', fontSize: '0.75rem' }}>{log.time}</span>
                   <span>{log.icon}</span>
@@ -620,7 +620,7 @@ export default function GuidePage() {
                 { q: 'What happens to data if I delete the house?', a: 'Data is permanently deleted after a 30-day grace period. During this period, the admin can restore the group. After 30 days, deletion is irreversible.' },
                 { q: 'Can I change the Admin?', a: 'Currently, Admin role transfer is done by contacting support. Multi-admin support is on the roadmap for a future release.' },
                 { q: 'Does RentSplit work offline?', a: 'RentSplit requires an internet connection for all operations since all data is cloud-based. Offline mode is planned for a future mobile app.' },
-              ].map((faq, i) => (
+              ].map(( faq: any, i: any ) => (
                 <div key={i} style={{
                   background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.07)',
                   borderRadius: '14px', padding: '20px 24px',

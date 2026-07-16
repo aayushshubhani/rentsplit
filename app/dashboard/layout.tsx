@@ -28,7 +28,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
         </Link>
 
         <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '2px' }}>
-          {navItems.map(item => (
+          {navItems.map(( item : any ) => (
             <Link key={item.href} href={item.href} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 12px', borderRadius: '10px', textDecoration: 'none', color: '#64748b', fontSize: '0.87rem', fontWeight: '500', transition: 'all 0.15s' }}>
               <span style={{ fontSize: '1rem' }}>{item.icon}</span>
               <span>{item.label}</span>

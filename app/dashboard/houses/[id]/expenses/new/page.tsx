@@ -51,7 +51,7 @@ export default function NewExpensePage() {
           <div style={{ marginBottom: '18px' }}>
             <label style={lbl}>CATEGORY</label>
             <select name="category" defaultValue="other" style={{ ...inp, cursor: 'pointer' }}>
-              {CATEGORIES.map(c => <option key={c} value={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</option>)}
+              {CATEGORIES.map(( c : any ) => <option key={c} value={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</option>)}
             </select>
           </div>
           <div style={{ marginBottom: '18px' }}>
@@ -69,7 +69,7 @@ export default function NewExpensePage() {
             <div style={{ marginBottom: '28px' }}>
               <label style={lbl}>SPLIT BETWEEN</label>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                {members.map(m => (
+                {members.map(( m : any ) => (
                   <label key={m.id} style={{ display: 'flex', alignItems: 'center', gap: '10px', cursor: 'pointer' }}>
                     <input type="checkbox" checked={selectedIds.includes(m.id)} onChange={() => toggle(m.id)} style={{ width: '16px', height: '16px', cursor: 'pointer' }} />
                     <span style={{ color: '#e2e8f0', fontSize: '0.9rem' }}>{m.name}</span>
